@@ -1,0 +1,33 @@
+#navbar{
+    position: relative;
+    top:10px;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(176, 127, 255);
+    
+}
+#navbar a{
+    text-decoration: none;
+    color: black;
+    font-size: 2rem;
+    font-weight: bold;
+}
+#form,#log{
+   
+    border: 5 px red solid;
+    margin: auto;
+    margin-top: 50px;
+    width: 40%;
+    height: 400px;
+    
+    
+}
+#cont{
+    display: flex;
+    grid-template-columns: repeat(4,1fr);
+    gap:50px;
+}
+#cont img{
+    height: 200px;
+    width: 200px;
+}

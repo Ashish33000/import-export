@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book My food</title>
+    <link rel="stylesheet" href="common.css">   
+</head>
+<body>
+   <div id="nav"></div>
+   <div id="login"></div>
+   
+</body>
+</html>
+<script type="module">
+    import {navbars,login} from "./export.js"   
+    document.getElementById("nav").innerHTML=navbars()
+    document.getElementById("login").innerHTML=login()
+
+    let btn=document.getElementById("logx")
+    btn.onclick=()=>{
+        signin()
+    }
+    let signin=async()=>{
+        let username=document.getElementById("uname").value
+        let password=document.getElementById("pass").value
+        let login_data={username,password}
+       let res=await fetch("https://masai-api-mocker.herokuapp.com/auth/login",{
+        method:"POST",
+        body:JSON.stringify(login_data),
+        headers:{
+            'Content-Type':'application/json'
+        }
+        
+    })
+    res= await res.json()
+    getprofile(username,res.token)
+    alert("login Sucessful")
+    window.location.href="index.html"
+    console.log('res: ', res);
+    }
+    
+
+    let getprofile=async(username,token)=>{
+      let res=await fetch(`https://masai-api-mocker.herokuapp.com/user/${username}`,{
+        headers:{
+            Authorization: `Bearer ${token}`
+        }
+      })
+
+      res=await res.json()
+    console.log(' res: ',  res);
+    }
+    
+
+</script>
